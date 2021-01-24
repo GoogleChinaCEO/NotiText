@@ -8,6 +8,7 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
@@ -17,9 +18,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.bigkoo.pickerview.builder.TimePickerBuilder;
+import com.bigkoo.pickerview.listener.OnTimeSelectListener;
+import com.bigkoo.pickerview.view.TimePickerView;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
     EditText edit;
-    Button btn,cancel;
+    Button btn,cancel,time_picker;
     public String msg;
     public static final int FLAG_ALWAYS_SHOW_TICKER = 0x1000000;
     public static final int FLAG_ONLY_UPDATE_TICKER = 0x2000000;
@@ -32,9 +40,11 @@ public class MainActivity extends AppCompatActivity {
         edit=findViewById(R.id.edit);
         btn=findViewById(R.id.btn);
         cancel=findViewById(R.id.cancel);
+        time_picker=findViewById(R.id.time_picker);
         createNotificationChannel("noti_channel","NotiChannel",3);
         btn.setOnClickListener(new mClick());
         cancel.setOnClickListener(new mClick());
+        time_picker.setOnClickListener(new mClick());
     }
     private String createNotificationChannel(String channelID, String channelNAME, int level) {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
@@ -60,7 +70,19 @@ public class MainActivity extends AppCompatActivity {
                     NotiMgr.cancel(0);
                     Log.d("Noti","取消了一条Noti："+msg);
                     break;
+                case R.id.time_picker:
+                    showTimePicker();
+                    break;
             }}
+    }
+    void showTimePicker(){
+        TimePickerView build = new TimePickerBuilder(this, this::onTimeSelect).build();
+        build.show();
+    }
+    public void onTimeSelect(Date date, View v) {
+        System.out.println("date : "+date);
+        String format = new SimpleDateFormat("yyyy-MM-dd").format(date); //将日期按自定义格式输出
+        System.out.println("Date--->"+format);
     }
     void toast(){
         msg=edit.getText().toString();

@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">NotiText</string>
+    <string name="hint_text">Type some text...</string>
+    <string name="send">Send</string>
+    <string name="cancel">Cancel</string>
+    <string name="time_picker">Show Time Picker</string>
 </resources>

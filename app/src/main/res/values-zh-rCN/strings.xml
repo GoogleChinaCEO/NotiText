@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">NotiText</string>
+    <string name="hint_text">输入一些文字...</string>
+    <string name="send">发送</string>
+    <string name="cancel">撤回</string>
+    <string name="time_picker">打开时间选择器</string>
+</resources>
