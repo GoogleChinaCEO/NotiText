@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         edit=findViewById(R.id.edit);
         btn=findViewById(R.id.btn);
         cancel=findViewById(R.id.cancel);
-        createNotificationChannel("0","NotiChannel",0);
+        createNotificationChannel("noti_channel","NotiChannel",3);
         btn.setOnClickListener(new mClick());
         cancel.setOnClickListener(new mClick());
     }
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        Notification notification = new NotificationCompat.Builder(this, "0")
+        Notification notification = new NotificationCompat.Builder(this, "noti_channel")
                 .setContentTitle("通知")
                 .setContentText(msg)
                 .setContentIntent(pendingIntent)
